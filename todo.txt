@@ -1,0 +1,15 @@
+TOOLING:
+make a list of 100 sudoku read from files to be used in test suite
+
+performance tests for a number of different solving strategies/implementations
+- ordered most performant to least performant across ~100 sudoku puzzles
+
+
+FEATURES:
+
+Builder pattern for sudoku? or just reading from a file might be easier, could do withCell() and withRow but cannot combine them
+- this should work smoothly with creation of either type of sudoku, withType(Type.CELL) withType(Type.Integer)
+
+abstract builder pattern CellSudokuBuilder and IntegerSudokuBuilder? something to easily swap between Integer and Cell types
+
+write basic sudoku solving strategies
