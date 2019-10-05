@@ -36,7 +36,7 @@ public class CellTest {
         assertEquals(Collections.EMPTY_LIST, cell.getOptions());
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testSetValueOnNonEmptyCell() {
         Cell cell = new Cell(4);
 

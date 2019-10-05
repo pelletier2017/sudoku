@@ -40,7 +40,7 @@ public class Cell {
 
     public void setValue(int val) {
         if (this.val != 0) {
-            throw new IllegalStateException("Cannot set value to " + val + " when value is already non-zero " + this.val);
+            throw new IllegalArgumentException("Cannot set value to " + val + " when value is already non-zero " + this.val);
         }
 
         this.val = val;
@@ -56,5 +56,4 @@ public class Cell {
         }
         throw new IllegalArgumentException("Cannot remove " + valToRemove + " because it is not in the list of options" + options);
     }
-
 }
