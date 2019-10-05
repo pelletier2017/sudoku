@@ -65,19 +65,18 @@ public class CellTest {
     }
 
     @Test
-    public void testRemoveOption() {
+    public void testRemoveOptionThatDoesExistShouldReturnTrue() {
         Cell cell = new Cell();
 
-        cell.removeOption(3);
-
+        assertTrue(cell.removeOption(3));
         assertEquals(Arrays.asList(1, 2, 4, 5, 6, 7, 8, 9), cell.getOptions());
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testRemoveOptionThatDoesntExist() {
+    @Test
+    public void testRemoveOptionThatDoesntExistShouldReturnFalse() {
         Cell cell = new Cell();
 
         cell.removeOption(3);
-        cell.removeOption(3);
+        assertFalse(cell.removeOption(3));
     }
 }

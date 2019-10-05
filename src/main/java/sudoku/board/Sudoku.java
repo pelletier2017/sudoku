@@ -1,5 +1,7 @@
 package sudoku.board;
 
+import java.util.List;
+
 public abstract class Sudoku {
 
     protected static final int DEFAULT_SIZE = 9;
@@ -7,6 +9,8 @@ public abstract class Sudoku {
     public abstract int size();
     public abstract int get(int row, int col);
     public abstract void set(int row, int col, int val);
+    public abstract List<Integer> getOptions(int row, int col);
+    public abstract boolean removeOption(int row, int col, int val);
 
     @Override
     public boolean equals(Object obj) {

@@ -47,13 +47,13 @@ public class Cell {
         this.options = Collections.emptyList();
     }
 
-    public void removeOption(int valToRemove) {
+    public boolean removeOption(int valToRemove) {
         for (int i = 0; i < options.size(); i++) {
             if (options.get(i).equals(valToRemove)) {
                 options.remove(i);
-                return;
+                return true;
             }
         }
-        throw new IllegalArgumentException("Cannot remove " + valToRemove + " because it is not in the list of options" + options);
+        return false;
     }
 }

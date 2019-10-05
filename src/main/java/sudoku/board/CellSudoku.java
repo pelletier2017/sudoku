@@ -1,6 +1,5 @@
 package sudoku.board;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class CellSudoku extends Sudoku {
@@ -53,13 +52,19 @@ public class CellSudoku extends Sudoku {
         return board[row][col].getValue();
     }
 
+    @Override
+    public void set(int row, int col, int value) {
+        board[row][col].setValue(value);
+    }
+
+    @Override
     public List<Integer> getOptions(int row, int col) {
         return board[row][col].getOptions();
     }
 
     @Override
-    public void set(int row, int col, int value) {
-        board[row][col].setValue(value);
+    public boolean removeOption(int row, int col, int val) {
+        return board[row][col].removeOption(val);
     }
 
     @Override

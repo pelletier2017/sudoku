@@ -7,9 +7,4 @@ performance tests for a number of different solving strategies/implementations
 
 FEATURES:
 
-Builder pattern for sudoku? or just reading from a file might be easier, could do withCell() and withRow but cannot combine them
-- this should work smoothly with creation of either type of sudoku, withType(Type.CELL) withType(Type.Integer)
-
-abstract builder pattern CellSudokuBuilder and IntegerSudokuBuilder? something to easily swap between Integer and Cell types
-
-write basic sudoku solving strategies
+different strategies to solve more complex puzzles
