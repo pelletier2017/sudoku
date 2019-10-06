@@ -17,6 +17,12 @@ travis CI
 
 FEATURES:
 
+other than looping strategy, maybe a cascading strategy that only attempts slow processes in a last resort
+- only goes to the 3rd strategy if the 2nd strategy made no change
+
+some kind of wrapper to time the solver, and something to aggregate all the solving attempts
+- ex 100 sudoku with 20 different solvers, timed solver?
+
 strategies to add:
 subsets (2 cells with equal subsets of 2 numbers in the same row/col/box will remove options of those 2 values in that row/col/box)
 - applies to 2, 3, 4, 5, 6, 7, 8, 9 (nine might be possible but we can probably stop checking at 5, make it a variable)
