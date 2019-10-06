@@ -35,6 +35,9 @@ public class Cell {
     }
 
     public List<Integer> getOptions() {
+        if (options.isEmpty() && val == 0) {
+            throw new IllegalStateException("Impossible to finish puzzle. A cell has no value and no options");
+        }
         return Collections.unmodifiableList(this.options);
     }
 

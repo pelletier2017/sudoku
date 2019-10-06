@@ -65,7 +65,7 @@ public class CellTest {
     }
 
     @Test
-    public void testRemoveOptionThatDoesExistShouldReturnTrue() {
+    public void testRemoveOptionThatExistsShouldReturnTrue() {
         Cell cell = new Cell();
 
         assertTrue(cell.removeOption(3));

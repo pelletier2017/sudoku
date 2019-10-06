@@ -34,33 +34,41 @@ public abstract class Sudoku {
 
     @Override
     public String toString() {
-        String rowBorder = "+-------+-------+-------+\n";
+        String colMarker = "   0 1 2   3 4 5   6 7 8\n";
+        String rowBorder = " +-------+-------+-------+\n";
         String rowFormat = "| %s %s %s | %s %s %s | %s %s %s |\n";
 
         StringBuilder builder = new StringBuilder();
+        builder.append(colMarker);
         for (int row = 0; row < size(); row++) {
             if (row % 3 == 0) {
                 builder.append(rowBorder);
             }
+            builder.append(row);
             String rowStr = String.format(rowFormat,
-                    getStr(row, 0),
-                    getStr(row, 1),
-                    getStr(row, 2),
-                    getStr(row, 3),
-                    getStr(row, 4),
-                    getStr(row, 5),
-                    getStr(row, 6),
-                    getStr(row, 7),
-                    getStr(row, 8)
+                    getNumber(row, 0),
+                    getNumber(row, 1),
+                    getNumber(row, 2),
+                    getNumber(row, 3),
+                    getNumber(row, 4),
+                    getNumber(row, 5),
+                    getNumber(row, 6),
+                    getNumber(row, 7),
+                    getNumber(row, 8)
             );
             builder.append(rowStr);
         }
         builder.append(rowBorder);
+        builder.append(colMarker);
         return builder.toString();
     }
 
-    private String getStr(int row, int col) {
+    private String getNumberOrBlank(int row, int col) {
         int val = get(row, col);
         return val != 0 ? Integer.toString(val) : " ";
+    }
+
+    private String getNumber(int row, int col) {
+        return String.valueOf(get(row, col));
     }
 }

@@ -2,7 +2,7 @@ package sudoku.solver.strategy;
 
 import sudoku.board.Sudoku;
 
-public class NarrowDownRowsColsBoxes implements StepSolvingStrategy {
+public class ScanningStrategy implements StepSolvingStrategy {
 
     private static final int SIZE_OF_BOX = 3;
 
@@ -19,7 +19,9 @@ public class NarrowDownRowsColsBoxes implements StepSolvingStrategy {
         for (int row = 0; row < sudoku.size(); row++) {
             for (int col = 0; col < sudoku.size(); col++) {
                 int val = sudoku.get(row, col);
-                hasUpdated = removeOptionFromRow(sudoku, row, val) || hasUpdated;
+                if (val != 0) {
+                    hasUpdated = removeOptionFromRow(sudoku, row, val) || hasUpdated;
+                }
             }
         }
         return hasUpdated;
@@ -38,7 +40,9 @@ public class NarrowDownRowsColsBoxes implements StepSolvingStrategy {
         for (int row = 0; row < sudoku.size(); row++) {
             for (int col = 0; col < sudoku.size(); col++) {
                 int val = sudoku.get(row, col);
-                hasUpdated = removeOptionFromCol(sudoku, col, val) || hasUpdated;
+                if (val != 0) {
+                    hasUpdated = removeOptionFromCol(sudoku, col, val) || hasUpdated;
+                }
             }
         }
         return hasUpdated;
@@ -57,10 +61,11 @@ public class NarrowDownRowsColsBoxes implements StepSolvingStrategy {
         for (int row = 0; row < sudoku.size(); row++) {
             for (int col = 0; col < sudoku.size(); col++) {
                 int val = sudoku.get(row, col);
-
-                int bigRow = row / SIZE_OF_BOX;
-                int bigCol = col / SIZE_OF_BOX;
-                hasUpdated = removeOptionFromBox(sudoku, bigRow, bigCol, val) || hasUpdated;
+                if (val != 0) {
+                    int bigRow = row / SIZE_OF_BOX;
+                    int bigCol = col / SIZE_OF_BOX;
+                    hasUpdated = removeOptionFromBox(sudoku, bigRow, bigCol, val) || hasUpdated;
+                }
             }
         }
         return hasUpdated;
@@ -68,8 +73,8 @@ public class NarrowDownRowsColsBoxes implements StepSolvingStrategy {
 
     private boolean removeOptionFromBox(Sudoku sudoku, int bigRow, int bigCol, int val) {
         boolean hasUpdated = false;
-        for (int row = bigRow * SIZE_OF_BOX; row < bigRow * (SIZE_OF_BOX + 1); row++) {
-            for (int col = bigCol * SIZE_OF_BOX; col < bigCol * (SIZE_OF_BOX + 1); col++) {
+        for (int row = bigRow * SIZE_OF_BOX; row < (bigRow * SIZE_OF_BOX) + SIZE_OF_BOX; row++) {
+            for (int col = bigCol * SIZE_OF_BOX; col < (bigCol * SIZE_OF_BOX) + SIZE_OF_BOX; col++) {
                 hasUpdated = sudoku.removeOption(row, col, val) || hasUpdated;
             }
         }

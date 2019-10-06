@@ -54,6 +54,7 @@ public class CellSudoku extends Sudoku {
 
     @Override
     public void set(int row, int col, int value) {
+        //System.out.printf("set (%d, %d) to %d\n", row, col, value);
         board[row][col].setValue(value);
     }
 
@@ -64,6 +65,7 @@ public class CellSudoku extends Sudoku {
 
     @Override
     public boolean removeOption(int row, int col, int val) {
+        //System.out.printf("remove option (%d,%d) remove %d\n", row, col, val);
         return board[row][col].removeOption(val);
     }
 

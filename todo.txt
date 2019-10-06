@@ -4,7 +4,19 @@ make a list of 100 sudoku read from files to be used in test suite
 performance tests for a number of different solving strategies/implementations
 - ordered most performant to least performant across ~100 sudoku puzzles
 
+accuracy tests for re-ordering the LoopingSolver to make sure it never adds incorrect information
+- apply to the same suite of all sudoku
 
 FEATURES:
 
-different strategies to solve more complex puzzles
+strategies to add:
+subsets (2 cells with equal subsets of 2 numbers in the same row/col/box will remove options of those 2 values in that row/col/box)
+- applies to 2, 3, 4, 5, 6, 7, 8, 9 (nine might be possible but we can probably stop checking at 5, make it a variable)
+
+interaction
+- if a row/col has a certain option only available in a single box then the cells outside of that row/col but inside the box can have the option removed for that number
+- the same applies if the only place for a number within a box falls on the same row/col then the rest of that row/col can remove the number from their options
+
+Refactoring:
+Scanning can be refactored into
+  - for each cell in the board, cross out rows, cols, and boxes for a given (row, col)
