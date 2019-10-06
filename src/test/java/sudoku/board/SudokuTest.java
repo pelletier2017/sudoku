@@ -10,6 +10,7 @@ public class SudokuTest {
     @Test
     public void testToString() {
         Sudoku sudoku = new CellSudoku(TestConstants.SIMPLE_UNSOLVED_BOARD);
+        assertNotNull(sudoku.toString());
         System.out.println(sudoku);
     }
 }

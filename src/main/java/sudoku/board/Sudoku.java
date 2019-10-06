@@ -12,6 +12,18 @@ public abstract class Sudoku {
     public abstract List<Integer> getOptions(int row, int col);
     public abstract boolean removeOption(int row, int col, int val);
 
+    public int numEmptyCells() {
+        int count = 0;
+        for (int row = 0; row < size(); row++) {
+            for (int col = 0; col < size(); col++) {
+                if (get(row, col) == 0) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof Sudoku)) {
