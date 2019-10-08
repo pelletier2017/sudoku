@@ -17,9 +17,6 @@ travis CI
 
 FEATURES:
 
-other than looping strategy, maybe a cascading strategy that only attempts slow processes in a last resort
-- only goes to the 3rd strategy if the 2nd strategy made no change
-
 some kind of wrapper to time the solver, and something to aggregate all the solving attempts
 - ex 100 sudoku with 20 different solvers, timed solver?
 
@@ -40,3 +37,4 @@ Could add a CellIterator, RowIterator, ColIterator to make iterating easier
              // stuff
          }
     }
+  - this could mean there is shared code for everything that iterates over each row, col, box and performs the same action

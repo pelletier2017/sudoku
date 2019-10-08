@@ -1,7 +1,7 @@
 package sudoku.solver;
 
 import sudoku.board.Sudoku;
-import sudoku.solver.strategy.StepSolvingStrategy;
+import sudoku.strategy.StepSolvingStrategy;
 import sudoku.validator.Validator;
 import sudoku.validator.ValidatorFactory;
 
@@ -10,16 +10,18 @@ Performs each StepSolvingStrategy in a loop until either nothing has changed or 
  */
 public class LoopingSolver implements SudokuSolver {
 
+    private Validator validator;
+
     private StepSolvingStrategy[] strategies;
 
-    public LoopingSolver(StepSolvingStrategy ... strategies) {
+    public LoopingSolver(Validator validator, StepSolvingStrategy ... strategies) {
+        this.validator = validator;
         this.strategies = strategies;
     }
 
     @Override
     public boolean solve(Sudoku sudoku) {
         attemptToSolve(sudoku);
-        Validator validator = new ValidatorFactory().getValidator();
         return validator.isSolved(sudoku);
     }
 

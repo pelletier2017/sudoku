@@ -5,9 +5,12 @@ import org.junit.Test;
 import sudoku.TestConstants;
 import sudoku.board.CellSudoku;
 import sudoku.board.Sudoku;
-import sudoku.solver.strategy.EliminationStrategy;
-import sudoku.solver.strategy.ScanningStrategy;
-import sudoku.solver.strategy.OnlyOptionStrategy;
+import sudoku.strategy.EliminationStrategy;
+import sudoku.strategy.ScanningStrategy;
+import sudoku.strategy.OnlyOptionStrategy;
+import sudoku.strategy.StepSolvingStrategy;
+import sudoku.validator.Validator;
+import sudoku.validator.ValidatorFactory;
 
 import static org.junit.Assert.*;
 
@@ -17,8 +20,13 @@ public class LoopingSolverTest {
 
     @Before
     public void setup() {
-        loopingSolver = new LoopingSolver(new OnlyOptionStrategy(), new ScanningStrategy(), new EliminationStrategy());
-//        loopingSolver = new LoopingSolver(new OnlyOptionStrategy(), new ScanningStrategy(), new EliminationStrategy());
+        Validator validator = new ValidatorFactory().getValidator();
+        StepSolvingStrategy[] stepSolvingStrategies = {
+                new OnlyOptionStrategy(),
+                new ScanningStrategy(),
+                new EliminationStrategy()
+        };
+        loopingSolver = new LoopingSolver(validator, stepSolvingStrategies);
     }
 
     @Test

@@ -1,6 +1,11 @@
-package sudoku.solver.strategy;
+package sudoku.strategy;
 
 import sudoku.board.Sudoku;
+
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class SubsetStrategy implements StepSolvingStrategy {
 
@@ -28,6 +33,14 @@ public class SubsetStrategy implements StepSolvingStrategy {
 
         return false;
     }
+
+    Set<Integer> combinedSet(List<List<Integer>> listOfOptions) {
+        return listOfOptions.stream()
+                .flatMap(Collection::stream)
+                .collect(Collectors.toSet());
+    }
+
+
 
     private boolean reduceColSubsets(Sudoku sudoku, int subsetSize) {
         return false;
