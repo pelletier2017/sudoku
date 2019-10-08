@@ -106,5 +106,16 @@ public class EliminationStrategy implements StepSolvingStrategy {
         throw new IllegalStateException("This method not be called if val does not appear in the row");
     }
 
-    // TODO add the same elimination for elements in each box
+    // TODO add the same elimination for elements in each box,
+    // is this needed or already coverd by only option?
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj != null && obj.getClass() == this.getClass();
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

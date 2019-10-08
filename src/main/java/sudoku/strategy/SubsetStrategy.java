@@ -50,4 +50,14 @@ public class SubsetStrategy implements StepSolvingStrategy {
         return false;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        return obj != null && obj.getClass() == this.getClass();
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
+
 }

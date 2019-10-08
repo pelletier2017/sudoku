@@ -36,4 +36,5 @@ public class SubsetStrategyTest {
     public void solveBoxSubset() {
         fail();
     }
+
 }

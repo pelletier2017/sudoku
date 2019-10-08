@@ -2,6 +2,8 @@ package sudoku.strategy;
 
 import sudoku.board.Sudoku;
 
+import java.util.Objects;
+
 public class ScanningStrategy implements StepSolvingStrategy {
 
     private static final int SIZE_OF_BOX = 3;
@@ -79,5 +81,15 @@ public class ScanningStrategy implements StepSolvingStrategy {
             }
         }
         return hasUpdated;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj != null && obj.getClass() == this.getClass();
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
     }
 }

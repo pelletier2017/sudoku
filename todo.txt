@@ -40,3 +40,6 @@ Could add a CellIterator, RowIterator, ColIterator to make iterating easier
          }
     }
   - this could mean there is shared code for everything that iterates over each row, col, box and performs the same action
+
+Move equals tests out of each of the Strategies and Solvers and into separate tests that will test all strategies
+- a test class that will test each of the equals

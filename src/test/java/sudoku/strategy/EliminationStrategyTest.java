@@ -36,4 +36,5 @@ public class EliminationStrategyTest {
         eliminationStrategy.solveStep(sudoku);
         assertEquals(9, sudoku.get(row, col));
     }
+
 }

@@ -5,6 +5,9 @@ import sudoku.strategy.StepSolvingStrategy;
 import sudoku.validator.Validator;
 import sudoku.validator.ValidatorFactory;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 /*
 Performs each StepSolvingStrategy in a loop until either nothing has changed or the puzzle is solved.
  */
@@ -35,4 +38,19 @@ public class LoopingSolver implements SudokuSolver {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LoopingSolver that = (LoopingSolver) o;
+        return validator.equals(that.validator) &&
+                Arrays.equals(strategies, that.strategies);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(validator);
+        result = 31 * result + Arrays.hashCode(strategies);
+        return result;
+    }
 }

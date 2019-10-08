@@ -3,9 +3,14 @@ package sudoku.solver;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
+import sudoku.TestConstants;
+import sudoku.board.CellSudoku;
 import sudoku.board.Sudoku;
+import sudoku.strategy.EliminationStrategy;
+import sudoku.strategy.ScanningStrategy;
 import sudoku.strategy.StepSolvingStrategy;
 import sudoku.validator.Validator;
+import sudoku.validator.ValidatorFactory;
 
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.any;
@@ -144,6 +149,51 @@ public class CascadingSolverTest {
         verify(stepA, times(2)).solveStep(any());
         verify(stepB, times(2)).solveStep(any());
         verify(stepC, times(1)).solveStep(any());
+    }
+
+    @Test
+    public void testNotEqualsDifferentStrategy() {
+        Validator validator = new ValidatorFactory().getValidator();
+        StepSolvingStrategy stepA = new ScanningStrategy();
+        StepSolvingStrategy stepB = new EliminationStrategy();
+
+        SudokuSolver solverA = new CascadingSolver(validator, stepA);
+        SudokuSolver solverB = new CascadingSolver(validator, stepB);
+        assertNotEquals(solverA, solverB);
+    }
+
+    @Test
+    public void testEqualsSameStrategy() {
+        Validator validator = new ValidatorFactory().getValidator();
+        StepSolvingStrategy stepA = new ScanningStrategy();
+        StepSolvingStrategy stepB = new ScanningStrategy();
+
+        SudokuSolver solverA = new CascadingSolver(validator, stepA);
+        SudokuSolver solverB = new CascadingSolver(validator, stepB);
+        assertEquals(solverA, solverB);
+    }
+
+    @Test
+    public void testEqualsSameValidator() {
+        Validator validatorA = new ValidatorFactory().getValidator();
+        Validator validatorB = new ValidatorFactory().getValidator();
+        StepSolvingStrategy stepA = new ScanningStrategy();
+        StepSolvingStrategy stepB = new ScanningStrategy();
+
+        SudokuSolver solverA = new CascadingSolver(validatorA, stepA);
+        SudokuSolver solverB = new CascadingSolver(validatorB, stepB);
+        assertEquals(solverA, solverB);
+    }
+
+    @Test
+    public void testNotEqualsSameStepsWrongOrder() {
+        Validator validator = new ValidatorFactory().getValidator();
+        StepSolvingStrategy stepA = new ScanningStrategy();
+        StepSolvingStrategy stepB = new EliminationStrategy();
+
+        SudokuSolver solverA = new CascadingSolver(validator, stepA, stepB);
+        SudokuSolver solverB = new CascadingSolver(validator, stepB, stepA);
+        assertNotEquals(solverA, solverB);
     }
 
 }
