@@ -1,4 +1,4 @@
-package sudoku.solver.strategy;
+package sudoku.strategy;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -9,15 +9,9 @@ import static org.junit.Assert.*;
 
 public class EliminationStrategyTest {
 
-    private ScanningStrategy scanningStrategy;
+    private ScanningStrategy scanningStrategy = new ScanningStrategy();;
 
-    private EliminationStrategy eliminationStrategy;
-
-    @Before
-    public void setup() {
-        eliminationStrategy = new EliminationStrategy();
-        scanningStrategy = new ScanningStrategy();
-    }
+    private EliminationStrategy eliminationStrategy = new EliminationStrategy();;
 
     @Test
     public void solveOnlyNumInRow() {

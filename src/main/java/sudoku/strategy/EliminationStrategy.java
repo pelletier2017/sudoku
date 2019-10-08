@@ -1,4 +1,4 @@
-package sudoku.solver.strategy;
+package sudoku.strategy;
 
 import sudoku.board.Sudoku;
 

@@ -1,4 +1,4 @@
-package sudoku.solver.strategy;
+package sudoku.strategy;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,16 +12,11 @@ import static org.junit.Assert.assertEquals;
 
 public class ScanningStrategyTest {
 
-    private ScanningStrategy scanningStrategy;
+    private ScanningStrategy scanningStrategy = new ScanningStrategy();
 
     private static final List<Integer> OPTIONS_WITHOUT_TWO = Arrays.asList(1,3,4,5,6,7,8,9);
 
     private static final List<Integer> DEFAULT_OPTIONS = Arrays.asList(1,2,3,4,5,6,7,8,9);
-
-    @Before
-    public void setup() {
-        scanningStrategy = new ScanningStrategy();
-    }
 
     @Test
     public void narrowDownRows() {
