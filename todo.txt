@@ -28,6 +28,8 @@ interaction
 - if a row/col has a certain number only available in a single box then the cells outside of that row/col but inside the box can have the option removed for that number
 - the same applies if the only place for a number within a box falls on the same row/col then the rest of that row/col can remove the number from their options
 
+SudokuSolvers need Equals/Hashcode method, which means the Strategies also need an equals/hashcode method
+
 Refactoring:
 Scanning can be refactored into
   - for each cell in the board, cross out rows, cols, and boxes for a given (row, col)
