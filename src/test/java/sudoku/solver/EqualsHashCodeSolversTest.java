@@ -10,7 +10,7 @@ import sudoku.validator.ValidatorFactory;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
-public class EqualsSolversTest {
+public class EqualsHashCodeSolversTest {
 
     @Test
     public void testLoopingSolver() throws Exception {
@@ -27,6 +27,8 @@ public class EqualsSolversTest {
         testEqualsSameStrategy(clazz);
         testEqualsSameValidator(clazz);
         testNotEqualsSameStepsWrongOrder(clazz);
+        testHashCodeNotEquals(clazz);
+        testHashCodeEquals(clazz);
     }
 
     private void testNotEqualsDifferentStrategy(Class clazz) throws Exception {
@@ -70,6 +72,28 @@ public class EqualsSolversTest {
         SudokuSolver solverA = solverFromClass(clazz, validator, stepA, stepB);
         SudokuSolver solverB = solverFromClass(clazz, validator, stepB, stepA);
         assertNotEquals(solverA, solverB);
+    }
+
+    private void testHashCodeNotEquals(Class clazz) throws Exception {
+        Validator validator = new ValidatorFactory().getValidator();
+        StepSolvingStrategy stepA = new ScanningStrategy();
+        StepSolvingStrategy stepB = new EliminationStrategy();
+
+        SudokuSolver solverA = solverFromClass(clazz, validator, stepA);
+        SudokuSolver solverB = solverFromClass(clazz, validator, stepB);
+
+        assertNotEquals(solverA.hashCode(), solverB.hashCode());
+    }
+
+    private void testHashCodeEquals(Class clazz) throws Exception {
+        Validator validator = new ValidatorFactory().getValidator();
+        StepSolvingStrategy stepA = new ScanningStrategy();
+        StepSolvingStrategy stepB = new ScanningStrategy();
+
+        SudokuSolver solverA = solverFromClass(clazz, validator, stepA);
+        SudokuSolver solverB = solverFromClass(clazz, validator, stepB);
+
+        assertEquals(solverA.hashCode(), solverB.hashCode());
     }
 
     private SudokuSolver solverFromClass(Class clazz, Validator validator, StepSolvingStrategy ... stepSolvingStrategies) throws Exception {
